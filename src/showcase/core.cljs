@@ -7,15 +7,22 @@
 
 ;; define your app data so that it doesn't get over-written on reload
 
-(defonce app-state (atom {:text "Hello world!"}))
+(def app-state (atom {}))
+
+(defn navbar-component []
+  [:nav
+   [:a {:href "#"} "About"]
+   [:a {:href "#"} "Projects"]
+   [:a {:href "#"} "Contact"]
+   [:a.social {:href "#"} "Github"]
+   [:a.social {:href "#"} "LinkedIn"]])
 
 
-(defn hello-world []
+(defn main-component []
   [:div
-   [:h1 (:text @app-state)]
-   [:h3 "Edit this and watch it change!"]])
+   (navbar-component)])
 
-(reagent/render-component [hello-world]
+(reagent/render-component [main-component]
                           (. js/document (getElementById "app")))
 
 (defn on-js-reload [])
